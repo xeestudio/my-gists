@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Zaheer Ahmad | github gists</title>
+<meta name="description" content="Zaheer Ahmad is an experience Web Designer & Developer. I loves to create optimized but advanced workflows to produce cool pieces of Open Source software."/>
+	<meta name="keywords" content="Muhammad, Zaheer, Ahmad, Muhammad Zaheer, Zaheer Ahmad, Muhammad Zaheer Ahmad, Wordpress, Web Developer, development, UI Designer, UI, User Interface Designer, Web Designer, web design, design, Freelance, Bahawalpur, BWP, IUB, Islamia University Bahawalpir, Punjab, Pakistan" />
+<meta name="author" content="Muhammad Zaheer Ahmad" />
+<meta name="Resource-type" content="Document" />
+<!-- SEO --> 
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Portfolio of Zaheer Ahmad - Full Stack Web Developer &amp; Designer" />
+<meta property="og:site_name" content="Zaheer Ahmad - Full Stack Web Developer &amp; Designer" />
+<meta property="og:url" content="https://zaheer.info/" />
+<meta property="og:image" content="https://zaheer.info/img/profile.png" />
+<!-- Favicon --> 
+<link rel="shortcut icon" href="https://zaheer.info/img/favicon.ico">
+<style>
+  body {
+    color: #666;
+    background-color: #fff;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    background-color: #666;
+    color: #fff;
+  }
+
+  h1 a {
+    display: block;
+    line-height: 20px;
+    padding: 6px 20px;
+    /*border-bottom: 1px solid #ddd;*/
+    color: #fff;
+  }
+
+  #projects-count {
+    font-weight: normal;
+    color: #ccc;
+    display: inline-block;
+    line-height: 1.3em;
+    margin-left: .5em;
+  }
+
+  a {
+    color: #666;
+    background-color: transparent;
+    text-decoration: none;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -ms-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
+  }
+
+  a:hover {
+    color: #fff;
+    background-color: #666;
+  }
+
+  #gists-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #gists-list li {
+    display: inline;
+  }
+
+  #gists-list li a {
+    position: relative;
+    display: block;
+    line-height: 20px;
+    padding: 6px 20px;
+    overflow: hidden;
+  }
+
+  #gists-list li:nth-child(odd) a {
+    background-color: #fafafa;
+  }
+
+  #gists-list li a:hover {
+    color: #fff;
+    background-color: #666;
+  }
+
+  #gists-list li a .desc {
+    color: #ccc;
+    display: inline-block;
+    line-height: 1.3em;
+    margin-left: .5em;
+    font-style: italic;
+  }
+
+  #projects-info,
+  #gists-list li a .info {
+    float: right;
+    clear: right;
+  }
+
+  b.time {
+    font-weight: bold;
+    display: inline-block;
+  }
+
+  .middot {
+    color: #ccc;
+    font-weight: normal;
+  }
+</style>
+<h1>
+  <a href="http://gist.github.com/xeestudio">
+    <span id="projects-info"></span>xeestudio.github.gists
+    <span id="projects-count"></span>
+  </a>
+</h1>
+<ul id="gists-list"></ul>
+<script>
+  var gistsList = document.getElementById('gists-list'),
+    projectsCount = document.getElementById('projects-count'),
+    projectsInfo = document.getElementById('projects-info'),
+    load = function(data) {
+      if (!data || !data.data || !data.data.length) return;
+      var gists = data.data,
+        html = '';
+      var l = gists.length;
+      for (var i = 0; i < l; i++) {
+        var g = gists[i];
+        html += '<li>' + '<a href="' + g.html_url + '">' + '<span class="info"><b class="time" title="' + realDate(g.updated_at) + '">' + prettyDate(g.updated_at) + '</b></span>' + '<b>' + Object.keys(g.files)
+          .join("<span class='middot'> &#10753; </span>") + '</b> ' + '<span class="desc">' + g.description + '</span>' + '</a>';
+      }
+      gistsList.innerHTML = html;
+      projectsCount.innerHTML = l + ' public gists';
+      projectsInfo.innerHTML = 'Last Update';
+    };
+  // Relative times
+  function prettyDate(time) {
+    var date = new Date((time || "").replace(/-/g, "/").replace(/[TZ]/g, " "));
+    var secs = (((new Date()).getTime() - date.getTime()) / 1000);
+    Math.floor(secs);
+    var minutes = secs / 60;
+    secs = Math.floor(secs % 60);
+    if (minutes < 1) {
+        return secs + (secs > 1 ? ' seconds ago' : ' second ago');
+    }
+    var hours = minutes / 60;
+    minutes = Math.floor(minutes % 60);
+    if (hours < 1) {
+        return minutes + (minutes > 1 ? ' minutes ago' : ' minute ago');
+    }
+    var days = hours / 24;
+    hours = Math.floor(hours % 24);
+    if (days < 1) {
+        return hours + (hours > 1 ? ' hours ago' : ' hour ago');
+    }
+    var weeks = days / 7;
+    days = Math.floor(days % 7);
+    if (weeks < 1) {
+        return days + (days > 1 ? ' days ago' : ' day ago');
+    }
+    var months = weeks / 4.35;
+    weeks = Math.floor(weeks % 4.35);
+    if (months < 1) {
+        return weeks + (weeks > 1 ? ' weeks ago' : ' week ago');
+    }
+    var years = months / 12;
+    months = Math.floor(months % 12);
+    if (years < 1) {
+        return months + (months > 1 ? ' months ago' : ' month ago');
+    }
+    years = Math.floor(years);
+    return years + (years > 1 ? ' years ago' : ' years ago');
+  }
+
+  function realDate(time) {
+    return new Date((time || "").replace(/-/g, "/").replace(/[TZ]/g, " "));
+  }
+</script>
+<script src="https://api.github.com/users/xeestudio/gists?callback=load&per_page=100"></script>
